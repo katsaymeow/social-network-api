@@ -1,10 +1,11 @@
 const { Schema, model } = require('mongoose');
+// require for the 
 const validatorPackage = require('validator');
 const Thought = require('./Thought');
 // User Model
 const userSchema = new Schema(
     {
-        userName: {
+        username: {
             type: String,
             uniqueItems: true,
             required: [true, "Please enter a valid user name."],
