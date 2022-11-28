@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 // require for the 
 const validatorPackage = require('validator');
 const Thought = require('./Thought');
+
 // User Model
 const userSchema = new Schema(
     {
@@ -20,12 +21,16 @@ const userSchema = new Schema(
                 message: "Please use a valid email",
             },
         },
-        thoughts: {
-            thought_id: [Thought],
+        thoughts: [{
+            type: Schema.Types.ObjectId,
+            ref: Thought
         },
-        friends: {
-            friends_id: [User],
-        },
+    ],
+        friends: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     },
     {
         toJSON: {
