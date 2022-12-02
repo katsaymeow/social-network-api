@@ -18,8 +18,8 @@ router
 // api/thoughts/:thoughtId/reactions
 router
    .route('/:thoughtId/reactions')
-      .post(thoughtReaction)
-      .delete(removeReaction);
+   .post(thoughtReaction)
+   .delete(removeReaction);
 // Use exported functions from line 3 to create routes
 
 module.exports = router;

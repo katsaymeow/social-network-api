@@ -1,11 +1,13 @@
 const { Thought, User } = require('../models');
 
-module.exports = {
+const thoughtController = {
+
     getThoughts(req, res) {
         Thought.find()
             .then((thoughts) => res.json(thoughts))
             .catch((err) => res.status(500).json(err));
     }, 
+
     getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.thoughtId })
             .then((thoughts) =>
@@ -19,7 +21,7 @@ module.exports = {
         Thought.create(req.body)
             .then((thoughts) =>
             {
-                return User.findOneandUpdate(
+                return User.findOneAndUpdate(
                     {_id: req.body.userId},
                     { $addToSet: { thoughtText: thoughts._id}},
                     {new: true}
@@ -28,7 +30,7 @@ module.exports = {
         .then((user) => 
           !user
             ? res.status(404).json ({
-                message: 'I am sorry, that user does not exsist',
+                message: 'I am sorry, that user does not exist',
             })
             : res.json('Thought created')
             )
