@@ -64,12 +64,12 @@ module.exports = {
         User.findOneAndUpdate(
             { _id: req.params.userId },
             {$addToSet: {friends: req.params.friendsId} },
-            {runValidators: true, new: true }
+            {new: true }
         )
-         .then((friends) =>
-         !friends
+         .then((user) =>
+         !user
             ? res.status(404).json({ message: 'This user has no friends yet!'})
-            : res.json(friends)
+            : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
     },
